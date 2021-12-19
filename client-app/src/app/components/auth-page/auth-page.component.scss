@@ -1,0 +1,110 @@
+@import "~src/assets/scss/loading-bars-animations.scss";
+@import "~src/assets/scss/mixins.scss";
+
+.auth_page_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 150px 20px;
+    box-sizing: border-box;
+
+    .dialog_contaier {
+        width: 250px;
+        position: relative;
+        padding: 30px;
+        border-radius: 6px;
+        background-color: #222f3e;
+        text-align: center;
+      
+        box-shadow: 0px 0px 0px 1000px rgba(34, 60, 80, 0.2);
+
+        .loading_container {
+            padding: 5px 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            .loading_bars_container {
+                position: absolute;
+            }
+        }
+
+        h1 {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .fields {
+            input {
+                font-size: 20px;
+                border: 0;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #3498db;
+                padding: 10px 5px;
+                width: 160px;
+                outline: none;
+                color: #fff;
+                border-radius: 12px;
+                transition: 0.25s;
+                box-sizing: border-box;
+
+                &:invalid {
+                    border-color: #e74c3c;
+                }
+
+                &:focus {
+                    width: 240px;
+                    border-color: #2ecc71;
+                }
+
+                &::placeholder {
+                    color: #eee;
+                }
+
+                &::-ms-reveal,
+                &::-ms-clear {
+                    display: none;
+                }
+            }
+        }
+
+        .tool_footer {
+            display: inline-flex;
+
+            .butt {
+                cursor: pointer;
+                border: 0;
+                background: none;
+                display: block;
+                margin: 20px 5px;
+                text-align: center;
+                border: 2px solid #2ecc71;
+                padding: 10px 15px;
+                outline: none;
+                color: #fff;
+                border-radius: 12px;
+                transition: 0.25s;
+
+                &:disabled {
+                    opacity: 0.3;
+                }
+
+                &:not(:disabled):hover {
+                    background-color: #2ecc71;
+                }
+            }
+        }
+    }
+}

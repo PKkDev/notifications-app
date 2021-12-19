@@ -1,0 +1,226 @@
+<div class="admin_page_container">
+
+    <div class="menu">
+
+        <div class="part">
+            <button class="btn" (click)="logOut()">выйти</button>
+        </div>
+
+        <div class="part">
+            <span class="name_view">
+                {{authSerice.getUserName()}}
+            </span>
+        </div>
+
+    </div>
+
+    <div class="item_container">
+
+        <div class="item sm">
+
+            <div class="item_content">
+
+                <div class="title">Сервисы</div>
+
+                <input class="input" [(ngModel)]="newSystemName" />
+                <button class="btn" (click)="addSystem()">добавить</button>
+
+                <ng-container *ngIf="servicesLoading">
+                    <ng-template [ngTemplateOutlet]="loadingTemplate"></ng-template>
+                </ng-container>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let system of systemsData">
+                            <td>
+                                <input class="input" [(ngModel)]="system.systemName">
+                            </td>
+                            <td>
+                                <button class="btn" (click)="selectedSystemToViewTheme = system">темы</button>
+                                <button class="btn" (click)="removeSystem(system.id)">удалить</button>
+                                <button class="btn" (click)="updateSystem(system)">изменить</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="item sm">
+
+            <div class="item_content">
+
+                <div class="title">Темы</div>
+
+                <input class="input" *ngIf="selectedSystemToViewTheme" [(ngModel)]="newThememNme" />
+                <button class="btn" *ngIf="selectedSystemToViewTheme" (click)="addTheme()">добавить</button>
+
+                <ng-container *ngIf="themesLoading">
+                    <ng-template [ngTemplateOutlet]="loadingTemplate"></ng-template>
+                </ng-container>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="selectedSystemToViewTheme">
+                        <tr *ngFor="let theme of selectedSystemToViewTheme.themes">
+                            <td>
+                                <input class="input" [(ngModel)]="theme.themeName">
+                            </td>
+                            <td>
+                                <button class="btn" (click)="removeTheme(theme.id)">удалить</button>
+                                <button class="btn" (click)="updateTheme(theme)">изменить</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="item lg">
+
+            <div class="item_content">
+
+                <div class="title">Оповещения</div>
+
+                <button class="btn" (click)="getNotofocations()">обновить</button>
+
+                <ng-container *ngIf="notificationsLoading">
+                    <ng-template [ngTemplateOutlet]="loadingTemplate"></ng-template>
+                </ng-container>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>date</th>
+                            <th>message</th>
+                            <th>service</th>
+                            <th>theme</th>
+                            <th>is_sended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let notif of notifData">
+                            <td>{{notif.date | date:'dd.MM.YY HH:mm'}}</td>
+                            <td>{{notif.message}}</td>
+                            <td>{{notif.system}}</td>
+                            <td>{{notif.theme}}</td>
+                            <td>{{notif.isSended}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="item lg">
+
+            <div class="item_content">
+
+                <div class="title">Подписки</div>
+
+                <button class="btn" (click)="getSubscriptions()">обновить</button>
+
+                <ng-container *ngIf="subscribersLoading">
+                    <ng-template [ngTemplateOutlet]="loadingTemplate"></ng-template>
+                </ng-container>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>userName</th>
+                            <th>service</th>
+                            <th>theme</th>
+                            <th>fio</th>
+                            <th>email</th>
+                            <th>phone</th>
+                            <th>type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subs of subscribleData">
+                            <td>{{subs.userName}}</td>
+                            <td>{{subs.system}}</td>
+                            <td>{{subs.theme}}</td>
+                            <td>{{subs.name}}</td>
+                            <td>{{subs.email}}</td>
+                            <td>{{subs.phone}}</td>
+                            <td>{{subs.type}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="item lg">
+
+            <div class="item_content">
+
+                <div class="title">Пользователи</div>
+
+                <ng-container *ngIf="usersLoading">
+                    <ng-template [ngTemplateOutlet]="loadingTemplate"></ng-template>
+                </ng-container>
+
+                <button class="btn" (click)="getUsers()">обновить</button>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>l_name</th>
+                            <th>s_name</th>
+                            <th>userName</th>
+                            <th>email</th>
+                            <th>phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usersData">
+                            <td>{{user.fName}}</td>
+                            <td>{{user.sName}}</td>
+                            <td>{{user.userName}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="loading_container">
+        <div class="loading_bars_container">
+            <div class="blockG" id="rotateG_01"></div>
+            <div class="blockG" id="rotateG_02"></div>
+            <div class="blockG" id="rotateG_03"></div>
+            <div class="blockG" id="rotateG_04"></div>
+            <div class="blockG" id="rotateG_05"></div>
+            <div class="blockG" id="rotateG_06"></div>
+            <div class="blockG" id="rotateG_07"></div>
+            <div class="blockG" id="rotateG_08"></div>
+        </div>
+    </div>
+</ng-template>

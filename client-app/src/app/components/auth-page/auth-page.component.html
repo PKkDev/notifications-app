@@ -1,0 +1,88 @@
+<div class="auth_page_container">
+
+  <ng-template [ngTemplateOutlet]="nowView"></ng-template>
+
+</div>
+
+<ng-template #loginView>
+
+  <div class="dialog_contaier">
+
+    <h1>авторизация</h1>
+
+    <div class="fields">
+
+      <input type="text" placeholder="логин" name="login" #login="ngModel" required [(ngModel)]="userName">
+
+      <input type="password" placeholder="пароль" name="pass" #pass="ngModel" required [(ngModel)]="password">
+
+    </div>
+
+    <div class="tool_footer">
+      <button class="butt" [disabled]="authIsChecking || !login.valid || !pass.valid" (click)="logIn()">
+        Войти
+      </button>
+      <button class="butt" [disabled]="authIsChecking" (click)="loadViewTemplate()">
+        Регистрация
+      </button>
+    </div>
+
+    <div class="loading_container" *ngIf="authIsChecking">
+      <div class="loading_bars_container">
+        <div class="blockG" id="rotateG_01"></div>
+        <div class="blockG" id="rotateG_02"></div>
+        <div class="blockG" id="rotateG_03"></div>
+        <div class="blockG" id="rotateG_04"></div>
+        <div class="blockG" id="rotateG_05"></div>
+        <div class="blockG" id="rotateG_06"></div>
+        <div class="blockG" id="rotateG_07"></div>
+        <div class="blockG" id="rotateG_08"></div>
+      </div>
+    </div>
+
+  </div>
+
+</ng-template>
+
+<ng-template #registerView>
+
+  <div class="dialog_contaier">
+
+    <h1>Регистрация</h1>
+
+    <div class="fields">
+
+      <input type="text" placeholder="почта" name="emailField" #emailField="ngModel" required [(ngModel)]="email">
+
+      <input type="text" placeholder="логин" name="login" #login="ngModel" required [(ngModel)]="userName">
+
+      <input type="password" placeholder="пароль" name="pass" #pass="ngModel" required [(ngModel)]="password">
+
+    </div>
+
+    <div class="tool_footer">
+      <button class="butt" [disabled]="authIsChecking || !emailField.valid || !login.valid || !pass.valid"
+        (click)="register()">
+        Зарегистриоваться
+      </button>
+      <button class="butt" [disabled]="authIsChecking" (click)="loadViewTemplate()">
+        Войти
+      </button>
+    </div>
+
+    <div class="loading_container" *ngIf="authIsChecking">
+      <div class="loading_bars_container">
+        <div class="blockG" id="rotateG_01"></div>
+        <div class="blockG" id="rotateG_02"></div>
+        <div class="blockG" id="rotateG_03"></div>
+        <div class="blockG" id="rotateG_04"></div>
+        <div class="blockG" id="rotateG_05"></div>
+        <div class="blockG" id="rotateG_06"></div>
+        <div class="blockG" id="rotateG_07"></div>
+        <div class="blockG" id="rotateG_08"></div>
+      </div>
+    </div>
+
+  </div>
+
+</ng-template>

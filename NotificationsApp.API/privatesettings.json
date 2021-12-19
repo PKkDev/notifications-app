@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "ApplicationConnectionString": "Host=37.140.192.97;Port=3306;Database=u0901873_notifications;Username=u0901873_admin;Password=ZlZlZlJeME2"
+  }
+}
