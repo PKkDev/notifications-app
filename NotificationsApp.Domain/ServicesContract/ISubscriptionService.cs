@@ -13,8 +13,10 @@ namespace NotificationsApp.Domain.ServicesContract
 
         public Task<IEnumerable<SubscriptionDto>> GetUserSubscriptionAsync(
            int id, CancellationToken ct = default);
+
         public Task AddUserSubscriptionAsync(
            int id, AddSubscriptionQuery dto, CancellationToken ct = default);
+
         public Task DeleteUserSubscriptionAsync(
           int id, CancellationToken ct = default);
     }

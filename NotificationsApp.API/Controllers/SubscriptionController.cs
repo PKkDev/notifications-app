@@ -46,10 +46,11 @@ namespace NotificationsApp.API.Controllers
         }
 
         [HttpPost("add")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
+       // [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<IActionResult> AddUserSubscription(
             [FromQuery] int id, [FromBody] AddSubscriptionQuery query, CancellationToken ct = default)
         {
+
             await _service.AddUserSubscriptionAsync(id, query, ct);
             return Ok();
         }

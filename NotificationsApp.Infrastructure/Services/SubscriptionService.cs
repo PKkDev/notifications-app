@@ -102,6 +102,17 @@ namespace NotificationsApp.Infrastructure.Services
         {
             try
             {
+                //id = 7;
+                //dto.ThemeId = 14;
+                //dto.SystemId = 6;
+                //dto.Type = TypeSubscription.Mail;
+
+                //var users = await _context.User.ToListAsync(ct);
+
+                //var themes = await _context.SystemsDictionary
+                //     .Include(x => x.Themes)
+                //     .ToListAsync(ct);
+
                 UserSubscription newUserSubscription = new UserSubscription()
                 {
                     SystemId = dto.SystemId,

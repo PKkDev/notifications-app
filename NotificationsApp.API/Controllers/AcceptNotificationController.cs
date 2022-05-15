@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace NotificationsApp.API.Controllers
 {
-    [Route("api/notifictios")]
+    [Route("api/notification")]
     [ApiController]
-    public class AcceptNotifictioController : ControllerBase
+    public class AcceptNotificationController : ControllerBase
     {
-        private readonly ILogger<AcceptNotifictioController> _logger;
+        private readonly ILogger<AcceptNotificationController> _logger;
         private readonly IAcceptNotification _service;
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace NotificationsApp.API.Controllers
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="service"></param>
-        public AcceptNotifictioController(
-            ILogger<AcceptNotifictioController> logger, IAcceptNotification service)
+        public AcceptNotificationController(
+            ILogger<AcceptNotificationController> logger, IAcceptNotification service)
         {
             _logger = logger;
             _service = service;
@@ -33,19 +33,19 @@ namespace NotificationsApp.API.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     POST /notifictios
+        ///     POST /notification
         ///     {
-        ///         "date": "2021-10-03T09:59:16.023Z",
-        ///         "message": "test",
-        ///         "system": "SystemOne",
-        ///         "theme": "ThemeOne"
+        ///         "date": "2022-04-04T17:50:31.108Z",
+        ///         "message": "Error",
+        ///         "system": "IBM Notes",
+        ///         "theme": "Lotus"
         ///     }
         /// </remarks>
         /// <param name="query"></param>
         /// <param name="ct"></param>
         [HttpPost]
         [AllowAnonymous]
-        public async Task AcceptNotifications(
+        public async Task AcceptNotification(
             [FromBody] SendNotifictiosQuery query, CancellationToken ct = default)
         {
             await _service.AcceptNotificationAsync(query, ct);
